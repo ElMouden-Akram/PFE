@@ -22,7 +22,7 @@ class OffreStage
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $ajouterPar = null;
+    private ?User $ajouterPar = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_ajout = null;

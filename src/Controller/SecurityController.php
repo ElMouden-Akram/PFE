@@ -23,7 +23,7 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_insc');
         }
         else{
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_accueil');
         }
         }
         // get the login error if there is one

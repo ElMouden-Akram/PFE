@@ -15,8 +15,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function Home(UserRepository $UserRep,Request $request,Security $security): Response
+    #[Route('/profile', name: 'app_profile')]
+    public function profile(UserRepository $UserRep,Request $request,Security $security): Response
     {
         //tester d'abord s'il l'utilisateur veut acceder a sa page → etre connecter:
         if($security->isGranted("IS_AUTHENTICATED_FULLY")){
@@ -75,7 +75,7 @@ class HomeController extends AbstractController
                 //⚠️je pense qu'il faut ajouter des test expl: si le nom exist deja or email , ...(plustard)
                 $user=$form->getdata();
                 $UserRepository->save($user,true);
-                return $this->redirectToRoute("app_home");
+                return $this->redirectToRoute("app_accueil");
 
             }else{
                 //rediriger avec message error (plustard)
@@ -83,7 +83,7 @@ class HomeController extends AbstractController
             }
         }
         else{
-            return $this->redirectToRoute("app_home");
+            return $this->redirectToRoute("app_accueil");
             // return $this->render('home/index.html.twig', [
             //     'controller_name' => 'HomeController',
             // ]);

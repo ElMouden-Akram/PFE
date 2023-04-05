@@ -39,7 +39,7 @@ header{
     margin-left: 300px;
 }
 
-div{
+/* div{
     background-color: white;
     margin: 15px;
     height: 200px;
@@ -48,7 +48,7 @@ div{
     padding-left: 1.006em;
     box-sizing: content-box;
     
-}
+} */
 
 ul{
     list-style: none;
