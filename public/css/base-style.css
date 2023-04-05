@@ -1,0 +1,49 @@
+header, nav.navigation{
+    height: 100px;
+    /* width: 100%; */
+    background-color: white;
+    border:3px solid black;
+    margin-bottom: auto;
+    z-index: 3;
+    text-align: center;
+    
+}
+header{
+    float: left;
+    width: fit-content;
+}
+
+ul{
+    list-style: none;
+
+}
+li{
+    display: inline;
+    margin: 5px;
+}
+article{
+    border: 2px solid black;
+    display: inline-block;
+    padding: 1.2em;
+    min-width: 300px;
+}
+
+header{
+    float: left;
+    width: fit-content;
+}
+
+ul{
+    list-style: none;
+
+}
+li{
+    display: inline;
+    margin: 5px;
+}
+article{
+    border: 2px solid black;
+    display: inline-block;
+    padding: 1.2em;
+    min-width: 300px;
+}

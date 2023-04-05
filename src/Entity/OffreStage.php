@@ -20,6 +20,7 @@ class OffreStage
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    //suprime ce comments 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $ajouterPar = null;
