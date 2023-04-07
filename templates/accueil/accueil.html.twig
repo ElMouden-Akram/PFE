@@ -3,7 +3,9 @@
 {% block title %}Accueil{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/css/profile-style.css">
+    {# <link rel="stylesheet" href="/css/profile-style.css"> #}
+    <link rel="stylesheet" href="{{ asset('css/espace-style.css') }}">
+
 {% endblock %}
 
 {% block body %}
@@ -16,10 +18,10 @@
     <article class="content">
         {% for article in articles %}
             <div>
-                <img src="#" alt="icon d'entreprise">
-                <h3>{{article.getTitre}}</h3>
-                <p class="date"> admin | <a href="#">nom d'entreprise</a>|{{article.getDateAjout|date('Y-m-d')}}</p>
-                <p>description</p>
+                <a href="#" text-decoration:"none"><img src="/logo/faculter/images.jpg" alt="icon d'entreprise"></a>
+                <a href="#" text-decoration:"none"><h3>{{article.getTitre}}</h3></a>
+                <p class="date"> {{article.getAjouterPar.getFirstName }} {{ article.getAjouterPar.getLastName }} | <a href="#">nom d'entreprise</a>|{{article.getDateAjout|date('Y-m-d')}}</p>
+                <p>{{article.getDescription|slice(0,30)}} ...</p>
             </div>
         {% endfor %}
         {# <div>
@@ -28,7 +30,5 @@
             <p class="date">date | <a href="#">nom d'entreprise</a></p>
             <p>description</p>
         </div> #}
-        <div></div>
-        <div></div>
         </article>
 {% endblock %}

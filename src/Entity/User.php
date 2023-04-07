@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,6 +48,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $email = null;
+
+    #[ORM\OneToMany(mappedBy: 'ajouterPar', targetEntity: OffreStage::class)]
+    private Collection $offreStages;  //hadi tzadet because of OffreClient : chuf lteh kayna une methode tkhlik t3ref pour un user jami3 les offre le 3ndo
+
+    public function __construct()
+    {
+        $this->offreStages = new ArrayCollection();
+    }
 
     public function getIdUser(): ?int
     {
@@ -185,6 +195,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OffreStage>
+     */
+    public function getOffreStages(): Collection
+    {
+        return $this->offreStages;
+    }
+
+    //🔥usefull when you gonna need to add automaticly a offre to a user🔥
+    public function addOffreStage(OffreStage $offreStage): self
+    {
+        if (!$this->offreStages->contains($offreStage)) {
+            $this->offreStages->add($offreStage);
+            $offreStage->setAjouterPar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffreStage(OffreStage $offreStage): self
+    {
+        if ($this->offreStages->removeElement($offreStage)) {
+            // set the owning side to null (unless already changed)
+            if ($offreStage->getAjouterPar() === $this) {
+                $offreStage->setAjouterPar(null);
+            }
+        }
 
         return $this;
     }

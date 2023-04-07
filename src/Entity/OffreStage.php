@@ -14,16 +14,15 @@ class OffreStage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $Titre = null;
+    #[ORM\Column(length: 30)]
+    private ?string $titre = null;
+
+    #[ORM\ManyToOne(inversedBy: 'offreStages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $ajouterPar = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
-
-    //suprime ce comments 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $ajouterPar = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_ajout = null;
@@ -35,12 +34,24 @@ class OffreStage
 
     public function getTitre(): ?string
     {
-        return $this->Titre;
+        return $this->titre;
     }
 
-    public function setTitre(string $Titre): self
+    public function setTitre(string $titre): self
     {
-        $this->Titre = $Titre;
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getAjouterPar(): ?User
+    {
+        return $this->ajouterPar;
+    }
+
+    public function setAjouterPar(?User $ajouterPar): self
+    {
+        $this->ajouterPar = $ajouterPar;
 
         return $this;
     }
@@ -53,18 +64,6 @@ class OffreStage
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAjouterPar(): ?user
-    {
-        return $this->ajouterPar;
-    }
-
-    public function setAjouterPar(?user $ajouterPar): self
-    {
-        $this->ajouterPar = $ajouterPar;
 
         return $this;
     }
