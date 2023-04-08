@@ -28,6 +28,7 @@ class AppFixtures extends Fixture
         $manager->flush();
         //💡 : use this command to execute this code and create data in database :
         //utilisateur existant : `symfony console doctrine:fixtures:load --append`
+        // 🔥 use this command to generate hashed password : `symfony console security:hash-password` wait! not sure hitach password kaytbedel chaque fois check something called salt hacking or google
         // ndc : admin , mdp : admin
         // mdc : akram , mdp : 1234
     }
