@@ -46,14 +46,16 @@ class DisplayOffreController extends AbstractController
     #[Route('/offre_stage/{id}', name: 'app_offre_stage')]
     public function DisplayOffreStage(int $id, OffreStageRepository $OffreStageRepository): Response
     {
+        $article=[];
         // cherche data dans DB:
-        $article=$OffreStageRepository->find($id);
+        $article["offre"]=$OffreStageRepository->find($id);
         if(!$article){
             // dd("chi haja machi hiya hadik!");
             dd($article);
         }
 
-        return $this->render('offre/offre_stage.html.twig', [
+        return $this->forward('App\Controller\DisplayEntrepriseController::index', [
+            'view' => "offre/offre_stage.html.twig",
             'article' => $article,
         ]);
     }
@@ -62,14 +64,16 @@ class DisplayOffreController extends AbstractController
     public function DisplayOffreEmploi(int $id, OffreEmploiRepository $OffreEmploiRepository): Response
     {
         // cherche data dans DB:
-        $article=$OffreEmploiRepository->find($id);
+        $article=[];
+        $article["offre"]=$OffreEmploiRepository->find($id);
         if(!$article){
             // dd("chi haja machi hiya hadik!");
             dd($article);
         }
 
-        return $this->render('offre/offre_emploi.html.twig', [
-            'article' => $article,
+        return $this->forward('App\Controller\DisplayEntrepriseController::index',[
+            'view' => 'offre/offre_emploi.html.twig',
+            'article'=> $article,
         ]);
     }
 

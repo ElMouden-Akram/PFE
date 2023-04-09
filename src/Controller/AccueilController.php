@@ -24,6 +24,7 @@ class AccueilController extends AbstractController
         // dd($articles[0]->getAjouterPar());
         return $this->render('accueil/accueil.html.twig', [
             'articles' => $articles,
+            'path' => 'app_all_offre_stage',
         ]);
     }
 }

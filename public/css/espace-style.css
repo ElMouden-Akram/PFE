@@ -41,7 +41,7 @@ header{
     margin-left: auto;
 }
 
-div:not(.selectoffre):not(.sf-minitoolbar){
+div:not(.selectoffre):not([class*="sf-"]){
     background-color: white;
     margin: 15px;
     height: 25%;
