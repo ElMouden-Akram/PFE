@@ -50,11 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\OneToMany(mappedBy: 'ajouterPar', targetEntity: OffreStage::class)]
-    private Collection $offreStages;  //hadi tzadet because of OffreClient : chuf lteh kayna une methode tkhlik t3ref pour un user jami3 les offre le 3ndo
+    private Collection $offreStages;
+
+    #[ORM\OneToMany(mappedBy: 'ajouterPar', targetEntity: OffreEmploi::class)]
+    private Collection $offreEmplois;  //hadi tzadet because of OffreClient : chuf lteh kayna une methode tkhlik t3ref pour un user jami3 les offre le 3ndo
 
     public function __construct()
     {
         $this->offreStages = new ArrayCollection();
+        $this->offreEmplois = new ArrayCollection();
     }
 
     public function getIdUser(): ?int
@@ -224,6 +228,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($offreStage->getAjouterPar() === $this) {
                 $offreStage->setAjouterPar(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OffreEmploi>
+     */
+    public function getOffreEmplois(): Collection
+    {
+        return $this->offreEmplois;
+    }
+
+    public function addOffreEmploi(OffreEmploi $offreEmploi): self
+    {
+        if (!$this->offreEmplois->contains($offreEmploi)) {
+            $this->offreEmplois->add($offreEmploi);
+            $offreEmploi->setAjouterPar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffreEmploi(OffreEmploi $offreEmploi): self
+    {
+        if ($this->offreEmplois->removeElement($offreEmploi)) {
+            // set the owning side to null (unless already changed)
+            if ($offreEmploi->getAjouterPar() === $this) {
+                $offreEmploi->setAjouterPar(null);
             }
         }
 

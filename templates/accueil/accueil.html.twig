@@ -16,12 +16,15 @@
         <input type="text" placeholder="Recherche par entreprise">
     </section>
     <article class="content">
+        <div class="selectoffre">
+            <a href="{{ path('app_all_offre_stage') }}"><button id="myButton1">Offre Stage</button></a>
+            <a href="{{ path('app_all_offre_emploi') }}"><button id="myButton2">Offre Emploi</button></a>
+            <a href="#"><button>Formation</button></a>
+        </div>
         {% for article in articles %}
             <div>
-            {# {{ render(app_offre_stage) }} #}
-            {# {{ controller('App\\Controller\\OffreStageController::offreStagePage',{'id':4}) }} #}
-                <a href="{{ path('app_offre_stage', {'id': article.getId } ) }}" text-decoration:"none"><img src="/logo/faculter/images.jpg" alt="icon d'entreprise"></a>
-                <a href="{{ path('app_offre_stage', {'id': article.getId } ) }}" text-decoration:"none"><h3>{{article.getTitre}}</h3></a>
+                <a href="{{ path( path, {'id': article.getId } ) }}" text-decoration:"none"><img src="/logo/faculter/images.jpg" alt="icon d'entreprise"></a>
+                <a href="{{ path( path, {'id': article.getId } ) }}" text-decoration:"none"><h3>{{article.getTitre}}</h3></a>
                 <p class="date"> {{article.getAjouterPar.getFirstName }} {{ article.getAjouterPar.getLastName }} | <a href="#">nom d'entreprise</a>|{{article.getDateAjout|date('Y-m-d')}}</p>
                 <p>{{article.getDescription|slice(0,30)}} ...</p>
             </div>
@@ -33,4 +36,17 @@
             <p>description</p>
         </div> #}
         </article>
+        <script>
+            if(window.location.href=='http://127.0.0.1:8000/offre_stage'){
+                document.getElementById("myButton1").style.backgroundColor = '#FFFFFF';
+                document.getElementById("myButton1").style.color = 'black';
+            }
+            if(window.location.href=='http://127.0.0.1:8000/offre_emploi'){
+                document.getElementById("myButton2").style.backgroundColor = '#FFFFFF';
+                document.getElementById("myButton2").style.color = 'black';
+            }if(window.location.href=='http://127.0.0.1:8000/formation'){
+                document.getElementById("myButton3").style.backgroundColor = '#FFFFFF';
+                document.getElementById("myButton3").style.color = 'black';
+            }
+        </script>
 {% endblock %}

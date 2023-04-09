@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.getTitre }}{% endblock %}
+
+{% block body %}
+<style>
+    .container { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    s { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <h1 style="text-align:center">Offre Stage</h1>
+    <div class="container" >
+        <div style="border: 2px solid; margin: 10px auto 10px auto">{# Pour l'info de l'entreprise #}
+            <h3>Entreprise</h3>
+
+        </div>
+        <div style="border: 2px solid;">{# Pour l'info de l'annonce #}
+            <h3>Détails de l'annonce</h3>
+            <p>{{ article.getDescription }}</p>
+        </div>
+    </div>
+{% endblock %}
